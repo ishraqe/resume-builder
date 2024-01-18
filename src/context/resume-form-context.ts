@@ -9,7 +9,7 @@ import {
   IPersonalInformation,
   ISkils
 } from "../components/resume-form/types";
-import { IState } from "../components/resume-form/constants";
+import { IState } from "../constant/form";
 
 export interface IResumeFormContext {
   handleSubmit: (e?: FormEvent<HTMLFormElement> | undefined) => void;
@@ -17,7 +17,7 @@ export interface IResumeFormContext {
   errors: FormikErrors<IState>;
   touched: FormikTouched<IState>;
   setPersonalInformation: (personalInfo: IPersonalInformation) => void;
-  setEducationalInfo: (education: IEducation) => void;
+  setEducationalInfo: (education: IEducation[]) => void;
   setExperiences: (experiences: IExperiences[]) => void;
   setCertifications: (certifications: ICertifications[]) => void;
   setSkills: (skills: ISkils[]) => void;

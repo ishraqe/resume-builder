@@ -18,7 +18,10 @@ interface ISeactionHeadingProps {
   subTitle?: string;
 }
 
-export const SeactionHeading = ({ title, subTitle }: ISeactionHeadingProps) => {
+export const SeactionHeadingForm = ({
+  title,
+  subTitle
+}: ISeactionHeadingProps) => {
   return (
     <div className={classes.formHeading}>
       <h1 className={classes.headingTitle}>{title}</h1>

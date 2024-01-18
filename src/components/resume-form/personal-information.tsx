@@ -1,10 +1,9 @@
 import cntl from "cntl";
 import InputElement from "../common/form/input-element";
-import { TextBox } from "../common/form/textarea";
-import { SeactionHeading } from "./heading";
+import { TextBox } from "../common/form/text-area";
+import { SeactionHeadingForm } from "./form-section-heading";
 import { ChangeEvent } from "react";
-import { IPersonalInformation } from "./types";
-import { useResumeFormContext } from "@/context";
+import { useResumeFormContext } from "@/context/resume-form-context";
 
 const classes = {
   inputWrapper: cntl`
@@ -37,7 +36,7 @@ export const PersonalInfo = () => {
   return (
     <>
       <div className="flex w-full mt-5">
-        <SeactionHeading title="Personal Information" />
+        <SeactionHeadingForm title="Personal Information" />
       </div>
       <div className={classes.inputWrapper}>
         <InputElement

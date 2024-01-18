@@ -1,8 +1,7 @@
 import type { FormikHelpers } from "formik";
 import { useFormik } from "formik";
-import { ChangeEvent, useState } from "react";
 
-import { IState, initialState } from "../components/resume-form/constants";
+import { IState, initialState } from "../constant/form";
 import {
   ICertifications,
   IEducation,
@@ -12,10 +11,6 @@ import {
 } from "../components/resume-form/types";
 
 export const useResumeFormLogic = () => {
-  const handleError = (error: unknown) => {
-    // setShowErrorAlert(true);
-  };
-
   const onSubmit = async (
     values: IState,
     { resetForm }: FormikHelpers<IState>
@@ -33,8 +28,8 @@ export const useResumeFormLogic = () => {
     setValues({ ...values, personalInfo });
   };
 
-  const setEducationalInfo = (education: IEducation) => {
-    setValues({ ...values, education });
+  const setEducationalInfo = (educations: IEducation[]) => {
+    setValues({ ...values, educations });
   };
 
   const setExperiences = (experiences: IExperiences[]) => {

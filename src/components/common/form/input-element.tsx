@@ -54,11 +54,7 @@ const InputElement = ({
         className={classes.inputClass}
         name={name}
       />
-      {error ? (
-        <span className={classes.errorMessage}>
-          Error message displayed here
-        </span>
-      ) : null}
+      {error ? <span className={classes.errorMessage}>{error}</span> : null}
     </div>
   );
 };

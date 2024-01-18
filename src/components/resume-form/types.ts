@@ -11,6 +11,7 @@ export interface IPersonalInformation {
 }
 
 export interface IExperiences {
+  id: string;
   title: string;
   company: string;
   location?: string;
@@ -20,6 +21,7 @@ export interface IExperiences {
 }
 
 export interface IEducation {
+  id: string;
   degree?: string;
   major?: string;
   school?: string;
@@ -30,11 +32,13 @@ export interface IEducation {
 }
 
 export interface ICertifications {
+  id: string;
   name: string;
   date: string;
 }
 
 export interface ISkils {
+  id: string;
   name: string;
   score: number;
 }

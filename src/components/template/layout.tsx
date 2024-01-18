@@ -1,9 +1,8 @@
-import PropTypes from "prop-types";
-
 import "./layout.css";
-import Header from "./header";
+import Header from "../../app/nav-header";
+import { ReactNode } from "react";
 
-const Layout = ({ children }) => {
+export const Layout = ({ children }: { children: ReactNode }) => {
   return (
     <>
       <Header />
@@ -19,9 +18,3 @@ const Layout = ({ children }) => {
     </>
   );
 };
-
-Layout.propTypes = {
-  children: PropTypes.node.isRequired
-};
-
-export default Layout;

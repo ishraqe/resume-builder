@@ -1,11 +1,12 @@
 import React, { ChangeEvent } from "react";
-import InputElement from "../common/form/input-element";
-import { DatePickerInput } from "../common/form/date-picker";
+import { IEducation } from "../types";
+
+import InputElement from "../../common/form/input-element";
+import { DatePickerInput } from "../../common/form/date-picker";
 import cntl from "cntl";
-import { TextBox } from "../common/form/textarea";
-import { SeactionHeading } from "./heading";
-import { useResumeFormContext } from "../../context";
-import { IEducation } from "./types";
+import { TextBox } from "../../common/form/text-area";
+
+import { PrimaryButton } from "@/components/common/button/primary-button";
 
 const classes = {
   inputWrapper: cntl`
@@ -15,39 +16,30 @@ const classes = {
   `
 };
 
-export const EducationForm = () => {
-  const {
-    values: { education },
-    setEducationalInfo
-  } = useResumeFormContext();
-
-  const handleChangeInput = (
+interface IEducationFormProps {
+  educationData: IEducation;
+  saveEducation: (educationData: IEducation) => void;
+  handleChangeInput: (
     e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>
-  ) => {
-    const fieldName = e.target.name;
-    const fieldValue = e.target.value;
-    if (education) {
-      setEducationalInfo({ ...education, [fieldName]: fieldValue });
-    }
-  };
+  ) => void;
+  handleChangeDate: (date: Date | null, name: string) => void;
+  onSaveEducationClick: () => void;
+}
 
-  const handleChangeDate = (date: Date | null, name: string) => {
-    if (education) {
-      setEducationalInfo({ ...education, [name]: date });
-    }
-  };
-
+export const EducationForm = ({
+  educationData,
+  onSaveEducationClick,
+  handleChangeInput,
+  handleChangeDate
+}: IEducationFormProps) => {
   return (
     <>
-      <div className="flex w-full mt-5">
-        <SeactionHeading title="Educations" />
-      </div>
       <div className={classes.inputWrapper}>
         <InputElement
           label="Degree"
           name="degree"
           placeholder="Bachelor of Science"
-          value={education?.degree || ""}
+          value={educationData?.degree || ""}
           onChange={handleChangeInput}
           type="text"
         />
@@ -55,7 +47,7 @@ export const EducationForm = () => {
           label="Major"
           name="major"
           placeholder="Computer Science"
-          value={education?.major || ""}
+          value={educationData?.major || ""}
           onChange={handleChangeInput}
           type="text"
         />
@@ -65,7 +57,7 @@ export const EducationForm = () => {
           label="University"
           name="school"
           placeholder="University of ABC"
-          value={education?.school || ""}
+          value={educationData?.school || ""}
           onChange={handleChangeInput}
           type="text"
         />
@@ -74,7 +66,7 @@ export const EducationForm = () => {
           label="Address"
           name="location"
           placeholder="San Francisco, CA"
-          value={education?.location || ""}
+          value={educationData?.location || ""}
           onChange={handleChangeInput}
           type="text"
         />
@@ -84,14 +76,14 @@ export const EducationForm = () => {
         <DatePickerInput
           name="startDate"
           label="Start Date"
-          value={education?.startDate}
+          value={educationData?.startDate}
           onChange={(e) => handleChangeDate(e, "startDate")}
           placeholder="DD/MM/YYYY"
         />
         <DatePickerInput
           name="startDate"
           label="Start Date"
-          value={education?.endDate}
+          value={educationData?.endDate}
           onChange={(e) => handleChangeDate(e, "endDate")}
           placeholder="DD/MM/YYYY"
         />
@@ -99,10 +91,15 @@ export const EducationForm = () => {
 
       <TextBox
         label="Description"
-        value={education?.description || ""}
+        value={educationData?.description || ""}
         name="description"
         onChange={handleChangeInput}
       />
+      <div className="w-full flex justify-center items-center mt-10">
+        <PrimaryButton onClick={onSaveEducationClick}>
+          Save Experience
+        </PrimaryButton>
+      </div>
     </>
   );
 };

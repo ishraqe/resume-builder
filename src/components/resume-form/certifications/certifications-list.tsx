@@ -1,16 +1,18 @@
 import { FaEdit, FaTrash } from "react-icons/fa";
-import { PrimaryButton } from "../common/button/primary-button";
-import { ICertifications } from "./types";
+import { PrimaryButton } from "../../common/button/primary-button";
+import { ICertifications } from "../types";
 import { formatDate } from "@/utils/utils";
 
 interface ICertificationsListProps {
   certifications: ICertifications;
-  index: number;
+  onEdit: () => void;
+  onRemove: () => void;
 }
 
 export const CertificationsList = ({
   certifications,
-  index
+  onEdit,
+  onRemove
 }: ICertificationsListProps) => {
   return (
     <div className="w-full h-20 border border-[#e7eaf4] rounded-md flex p-2 mb-2 items-center">
@@ -21,11 +23,11 @@ export const CertificationsList = ({
         </span>
       </div>
       <div className="w-1/4 flex justify-end gap-2">
-        <PrimaryButton onClick={() => {}}>
+        <PrimaryButton onClick={onEdit}>
           <FaEdit />
         </PrimaryButton>
 
-        <PrimaryButton onClick={() => {}}>
+        <PrimaryButton className="bg-red-500" onClick={onRemove}>
           <FaTrash />
         </PrimaryButton>
       </div>

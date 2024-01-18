@@ -1,35 +1,42 @@
+"use client";
+
 import cntl from "cntl";
 import { PrimaryButton } from "../common/button/primary-button";
 import { PersonalInfo } from "./personal-information";
 import { Experience } from "./experience";
-import { EducationForm } from "./education";
+import { Education } from "./education";
 import { Certifications } from "./certifications";
-import { Skills } from "./skills";
-import { useResumeFormContext } from "../../context";
+import { SkillsForm } from "./skills";
+import { useRouter } from "next/navigation";
 
 const classes = {
   container: cntl`
-      flex flex-col 
-      items-center 
-    `
+    flex flex-col 
+    items-center 
+  `
 };
 
 export const ResumeForm = () => {
-  const onClickBtn = () => {};
+  const router = useRouter();
+
+  const onClickBtn = () => {
+    router.push("/preview");
+  };
 
   return (
     <div>
       <div className={classes.container}>
         <PersonalInfo />
-
-        <EducationForm />
+        <Education />
         <Experience />
         <Certifications />
-        <Skills />
+        <SkillsForm />
       </div>
 
       <div className="flex w-[100%] mt-10 justify-between">
-        <PrimaryButton onClick={onClickBtn}>Save</PrimaryButton>
+        <PrimaryButton className="w-full" onClick={onClickBtn}>
+          Generate Preview
+        </PrimaryButton>
       </div>
     </div>
   );

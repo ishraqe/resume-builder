@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import "./globals.css";
-import ContextWrapper from "./contxtWrapper";
-import { PrimaryButton } from "@/components/common/button/primary-button";
+import RootLayoutComponent from "./root-layout-component";
 
 const roboto = Roboto({ subsets: ["latin"], weight: "400" });
 
@@ -19,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={roboto.className}>
-        <ContextWrapper>{children}</ContextWrapper>
+        <RootLayoutComponent>{children}</RootLayoutComponent>
       </body>
     </html>
   );

@@ -8,6 +8,9 @@ const classes = {
   sectionTitle: (isWhite?: boolean): string => cntl`
     uppercase text-[#38464B] text-base font-semibold
     ${isWhite ? `text-[#fff]` : ""}
+  `,
+  subTitle: cntl`
+    text-[10px]
   `
 };
 
@@ -16,7 +19,10 @@ interface ISectionHeadingProps {
   isWhite?: boolean;
 }
 
-export const SectionHeading = ({ title, isWhite }: ISectionHeadingProps) => {
+export const SectionHeadingTemplate = ({
+  title,
+  isWhite
+}: ISectionHeadingProps) => {
   return (
     <div className={classes.sectionContainer(isWhite)}>
       <h2 className={classes.sectionTitle(isWhite)}>{title}</h2>

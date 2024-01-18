@@ -7,7 +7,7 @@ export const formatDate = (date: string) => {
   };
   const formattedDate = originalDate.toLocaleDateString("en-US", options);
 
-  const monthYearWithComma = formattedDate.replace(" ", ", "); // Add comma after the month
+  const monthYearWithComma = formattedDate.replace(" ", ", ");
 
   return monthYearWithComma;
 };

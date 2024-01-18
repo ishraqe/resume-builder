@@ -1,5 +1,6 @@
-import { useResumeFormContext } from "@/context";
 import cntl from "cntl";
+import { IEducation } from "../resume-form/types";
+import { formatDate } from "@/utils/utils";
 
 const classes = {
   container: cntl`
@@ -14,10 +15,7 @@ const classes = {
   `
 };
 
-export const EducationTemplate = () => {
-  const { values } = useResumeFormContext();
-  const { education } = values;
-
+export const EducationTemplate = ({ education }: { education: IEducation }) => {
   return (
     <div className={classes.container}>
       <span className={classes.title}>{education?.degree}</span>
@@ -29,7 +27,7 @@ export const EducationTemplate = () => {
 
       {education?.startDate && education?.endDate && (
         <span className={classes.timespan}>
-          {education?.startDate} - {education?.endDate}
+          {formatDate(education?.startDate)} - {formatDate(education?.endDate)}
         </span>
       )}
     </div>

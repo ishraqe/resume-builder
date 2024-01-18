@@ -1,11 +1,10 @@
-import InputElement from "../common/form/input-element";
-import { DatePickerInput } from "../common/form/date-picker";
-import { RichTextEditor } from "../common/form/richtextEditor";
-import { ChangeEvent, useState } from "react";
-import { IExperiences } from "./types";
+import InputElement from "../../common/form/input-element";
+import { DatePickerInput } from "../../common/form/date-picker";
+import { RichTextEditor } from "../../common/form/richtext-editor";
+import { IExperiences } from "../types";
 import cntl from "cntl";
-import { PrimaryButton } from "../common/button/primary-button";
-import { experienceInitialState } from "./constants";
+import { PrimaryButton } from "../../common/button/primary-button";
+import { ChangeEvent } from "react";
 import { ContentEditableEvent } from "react-simple-wysiwyg";
 const classes = {
   inputWrapper: cntl`
@@ -16,39 +15,22 @@ const classes = {
 };
 
 interface IExperienceFormProps {
-  saveExperience: (experienceData: IExperiences) => void;
+  experienceData: IExperiences;
+  handleChangeInput: (
+    e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>
+  ) => void;
+  handleChangeDate: (date: Date | null, name: string) => void;
+  onSaveExperienceClick: () => void;
+  handleRichTextChange: (e: ContentEditableEvent) => void;
 }
 
-const ExperienceForm = ({ saveExperience }: IExperienceFormProps) => {
-  const [experienceData, setExperienceData] = useState<IExperiences>(
-    experienceInitialState
-  );
-
-  const handleChangeInput = (
-    e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>
-  ) => {
-    const fieldName = e.target.name;
-    const fieldValue = e.target.value;
-    setExperienceData({ ...experienceData, [fieldName]: fieldValue || "" });
-  };
-
-  const handleChangeDate = (date: Date | null, name: string) => {
-    if (experienceData) {
-      setExperienceData({ ...experienceData, [name]: date });
-    }
-  };
-
-  const handleRichTextChange = (e: ContentEditableEvent) => {
-    const fieldValue = e.target.value || "";
-    const fieldName = e.target.name || "description";
-
-    setExperienceData({ ...experienceData, [fieldName]: fieldValue });
-  };
-
-  const onSaveExperienceClick = () => {
-    if (experienceData) saveExperience(experienceData);
-  };
-
+const ExperienceForm = ({
+  experienceData,
+  handleChangeInput,
+  handleChangeDate,
+  handleRichTextChange,
+  onSaveExperienceClick
+}: IExperienceFormProps) => {
   return (
     <>
       <InputElement

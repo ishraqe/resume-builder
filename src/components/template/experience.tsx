@@ -1,5 +1,6 @@
-import { useResumeFormContext } from "@/context";
 import cntl from "cntl";
+import { IExperiences } from "../resume-form/types";
+import { formatDate } from "@/utils/utils";
 
 const classes = {
   container: cntl`
@@ -25,10 +26,15 @@ const classes = {
   `
 };
 
-const ExperienceTemplate = () => {
-  const {
-    values: { experiences }
-  } = useResumeFormContext();
+interface IExperienceTemplateProps {
+  experiences?: IExperiences[];
+  theme: string;
+}
+
+const ExperienceTemplate = ({
+  experiences,
+  theme
+}: IExperienceTemplateProps) => {
   return (
     <>
       {experiences?.map((experience) => {
@@ -41,9 +47,12 @@ const ExperienceTemplate = () => {
               <span className={classes.roleType(true)}>
                 {experience.company} , {experience.company}
               </span>
-              <span className={classes.durationAndLocationText}>
-                {/* {experience.startDate} - {experience.endDate} */}
-              </span>
+              {experience.startDate && experience.endDate ? (
+                <span className={classes.durationAndLocationText}>
+                  {formatDate(experience.startDate)} -{" "}
+                  {formatDate(experience?.endDate)}
+                </span>
+              ) : null}
             </div>
             <ul className={classes.responsibilitiesContainer}>
               <li className={classes.responsibilities}>

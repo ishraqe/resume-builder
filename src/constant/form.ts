@@ -4,12 +4,12 @@ import {
   IExperiences,
   IPersonalInformation,
   ISkils
-} from "./types";
+} from "../components/resume-form/types";
 
 export interface IState {
   personalInfo?: IPersonalInformation;
   experiences?: IExperiences[];
-  education?: IEducation;
+  educations?: IEducation[];
   certifications?: ICertifications[];
   skills?: ISkils[];
 }
@@ -26,6 +26,7 @@ export const personalInfoInitialState: IPersonalInformation = {
 };
 
 export const educatinInitialState: IEducation = {
+  id: "",
   degree: "",
   major: "",
   school: "",
@@ -36,6 +37,7 @@ export const educatinInitialState: IEducation = {
 };
 
 export const experienceInitialState: IExperiences = {
+  id: "",
   title: "",
   company: "",
   location: "",
@@ -45,11 +47,13 @@ export const experienceInitialState: IExperiences = {
 };
 
 export const certificationsInitialState: ICertifications = {
+  id: "",
   name: "",
   date: ""
 };
 
 export const skillsInitialState: ISkils = {
+  id: "",
   name: "",
   score: 0
 };
@@ -57,7 +61,7 @@ export const skillsInitialState: ISkils = {
 export const initialState: IState = {
   personalInfo: personalInfoInitialState,
   experiences: [],
-  education: educatinInitialState,
+  educations: [],
   certifications: [],
   skills: []
 };

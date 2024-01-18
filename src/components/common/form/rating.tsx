@@ -4,27 +4,32 @@ interface IRatingProps {
   name?: string;
   value: number;
   onChange: (rating: number) => void;
-  numberOfStarts?: number;
+  numberOfStars?: number;
   dimension?: string;
+  error?: string;
 }
 
 export const Rating = ({
   name,
   value,
   onChange,
-  numberOfStarts = 5,
-  dimension = "35"
+  numberOfStars = 5,
+  dimension = "35",
+  error
 }: IRatingProps) => {
   return (
-    <div className="flex w-full">
+    <div className="flex w-full flex-col">
       <StarRatings
         rating={value}
         starRatedColor="blue"
         changeRating={onChange}
-        numberOfStars={numberOfStarts}
+        numberOfStars={numberOfStars}
         name={name}
         starDimension={dimension}
       />
+      {error ? (
+        <span className=" text-[12px] text-[#a51212]">{error}</span>
+      ) : null}
     </div>
   );
 };
